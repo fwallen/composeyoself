@@ -1,0 +1,23 @@
+{
+    "name": "frank/packages",
+    "description": "Some fun with packages",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Frank Wallen",
+            "email": "frank.wallen@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/options-resolver": "^3.3",
+        "symfony/var-dumper": "^3.3",
+        "yohang/finite": "^1.1",
+        "symfony/process": "^3.3",
+        "league/csv": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Packages\\Lib\\": "lib"
+        }
+    }
+}
