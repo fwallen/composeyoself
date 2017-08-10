@@ -24,12 +24,24 @@ foreach($reader->fetchAssoc() as $idx => $row) {
     dump($row);
 }
 
+echo $reader->toHTML();
+echo '<br/>';
+echo json_encode($reader);
+
+$reader->addFilter(function($row,$rowOffset,$iterator) {
+   if ($row[1] == 'PHPUgly') {
+       return false;
+   }
+
+   return true;
+});
+
+dump('Using a filter',$reader->fetchAll());
+
 $writer = Writer::createFromPath('league/write.csv','a+');
 $header = [
     'ID', 'Name'
 ];
-$writer->insertOne($header);
-
 
 $rows = [
     [1, 'John'],
@@ -37,6 +49,8 @@ $rows = [
     [3, 'Thomas'],
     [4, 'PHPUgly'],
 ];
+
+$writer->insertOne($header);
 $writer->insertAll($rows);
 
 $differentWriter = Writer::createFromPath('league/write_different.csv','a+');

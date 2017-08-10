@@ -24,6 +24,7 @@ $stateMachine->addTransition('back_to_state_1','state_3','state_1');
 $object = new StatefulObject();
 $stateMachine->setObject($object);
 $stateMachine->initialize();
+dump($object);
 
 //Give it a name
 $stateMachine->setGraph('Transitioning States');

@@ -2,6 +2,9 @@
 
 require_once('../vendor/autoload.php');
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\Options;
+
 //options values to set
 $args = [
 //    'host'     => 'localhost',
@@ -11,7 +14,7 @@ $args = [
 ];
 
 //Create the resolver and set up requirements, validations
-$resolver = new \Symfony\Component\OptionsResolver\OptionsResolver();
+$resolver = new OptionsResolver();
 
 //Define required options
 $resolver->setRequired(['username', 'password', 'host']);
@@ -22,7 +25,7 @@ $resolver->setAllowedTypes('username', 'string')
     ->setAllowedTypes('host', 'string');
 
 //Create a normalizer
-$resolver->setNormalizer('host', function(\Symfony\Component\OptionsResolver\Options $options, $value) {
+$resolver->setNormalizer('host', function(Options $options, $value) {
     if (substr($value, 0, 7) !== 'http://') {
         return 'http://' . $value;
     }
